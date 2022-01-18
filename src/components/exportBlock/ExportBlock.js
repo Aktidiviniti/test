@@ -16,20 +16,21 @@ class ExportBlock extends Component{
         this.props.changeValute(e);
     }
     render(){
-        let{salary, firstValuteValue, firstValuteName, secondValuteValue, secondValuteName,data} = this.props,
-        compare = '1' + ' ' + secondValuteName + ' ' + '=' + ' ' + (secondValuteValue / firstValuteValue).toFixed(4) + ' ' + firstValuteName,
-        result = ((firstValuteValue / secondValuteValue) * salary).toFixed(2);
+        const {salary, firstValuteValue, firstValuteName, secondValuteValue, secondValuteName} = this.props,
+            compare = '1' + ' ' + secondValuteName + ' ' + '=' + ' ' + (secondValuteValue / firstValuteValue).toFixed(4) + ' ' + firstValuteName,
+            result = ((firstValuteValue / secondValuteValue) * salary).toFixed(2);
         return(
         <Box>
-        <Typography variant='h6' 
-                    className="input__text" 
-                    sx = {{
-                        color: '#71767A',
-                        fontSize: '20px',
-                        fontWeight: 'normal'}}>
+            <Typography 
+                variant='h6' 
+                className="input__text" 
+                sx = {{
+                    color: '#71767A',
+                    fontSize: '20px',
+                    fontWeight: 'normal'}}>
                 Я получу
-                </Typography>
-        <Box sx = {{
+            </Typography>
+            <Box sx = {{
                     width: '400px',
                     height: '200px',
                     border: '1px solid #CDCDCD',
@@ -37,26 +38,28 @@ class ExportBlock extends Component{
                     marginTop: '10px',
                     position: "relative",
                     borderTop: 'none'}}>
-            <BasicSelect data = {this.props.data}
-                        changeValute = {this.props.changeValute}
-                        class = {"second__input"}/>
-            <Box sx = {{
-                fontWeight: 'bold',
-                fontSize: '36px',
-                margin: '24px 0 0 22px',
-                lineHeight: 1,
-                textTransform: 'uppercase'
-                }}>
-                {(salary  && firstValuteValue && secondValuteValue) ? result : ''}
-                
-            </Box>  
-            <Box sx = {{position: "absolute",
+                <BasicSelect data = {this.props.data}
+                            changeValute = {this.props.changeValute}
+                            class = {"second__input"}
+                            currentText = {this.props.currentText}
+                            swap = {this.props.swap}/>
+                <Box sx = {{
+                        fontWeight: 'bold',
+                        fontSize: '36px',
+                        margin: '24px 0 0 22px',
+                        lineHeight: 1,
+                        textTransform: 'uppercase',}}>
+                    {(salary  && firstValuteValue && secondValuteValue) ? result : ''}
+                </Box>  
+                <Box sx = {{
+                        position: "absolute",
                         bottom: '16px',
                         left: '22px',
-                        textTransform: 'uppercase'}}>
-                {(firstValuteValue && secondValuteValue) ? compare : 'Выберите валюты'}
-            </Box>
-        </Box>    
+                        textTransform: 'uppercase',
+                        color: '#71767A'}}>
+                    {(firstValuteValue && secondValuteValue) ? compare : 'Выберите валюты'}
+                </Box>
+            </Box>    
         </Box>  
         )
     }

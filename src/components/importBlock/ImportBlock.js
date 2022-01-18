@@ -2,6 +2,7 @@ import { Component } from "react";
 import { Typography, Box, InputLabel, MenuItem, FormControl, Select,} from '@mui/material';
 import TextField from '@mui/material/TextField';
 import BasicSelect from "../select/select";
+import CustomStyles from "../input/Input";
 class ImportBlock extends Component{
     constructor(props){
         super(props)
@@ -14,8 +15,8 @@ class ImportBlock extends Component{
         secondValuteName: '',
     } 
     changeSalary = (e) => {
-        if(+e.target.value || e.target.value==''){
-           this.setState({salary: e.target.value})
+        if(+e.target.value || e.target.value == ''){
+           this.setState({salary: e.target.value});
         this.props.changeSalary(e); 
         }
             
@@ -25,10 +26,8 @@ class ImportBlock extends Component{
     }
     
     render(){
-        let{salary, firstValuteValue, firstValuteName, secondValuteValue, secondValuteName, data} = this.props,
-        compare = '1' + ' ' + firstValuteName + ' ' + '=' + ' ' + (firstValuteValue / secondValuteValue).toFixed(4) + ' ' + secondValuteName
-        console.log(this.state.firstValuteName);
-        console.log(this.state.secondValuteName);
+        const {firstValuteValue, firstValuteName, secondValuteValue, secondValuteName} = this.props,
+        compare = '1' + ' ' + firstValuteName + ' ' + '=' + ' ' + (firstValuteValue / secondValuteValue).toFixed(4) + ' ' + secondValuteName;
         return(
         <Box>
             <Typography variant='h6' 
@@ -49,16 +48,13 @@ class ImportBlock extends Component{
                     borderTop: 'none'}}>
                 <BasicSelect data = {this.props.data}
                             changeValute = {this.props.changeValute}
-                            class = {"first__input"}/>
-                <Box
-                    component="form"
-                    sx={{
-                        '& > :not(style)': { m: 1, width: '25ch' },
-                    }}
-                    noValidate
-                    autoComplete="off">
-                    <TextField id="outlined-basic" variant="outlined" value = {this.state.salary} onChange={this.changeSalary}/>
-                </Box> 
+                            class = {"first__input"}
+                            currentText = {this.props.currentText}
+                            swap = {this.props.swap}/>
+                <CustomStyles
+                    changeSalary = {this.props.changeSalary}
+                    salary = {this.state.salary}> 
+                </CustomStyles>
                 <Box sx = {{
                         position: "absolute",
                         bottom: '16px',
@@ -66,12 +62,11 @@ class ImportBlock extends Component{
                         textTransform: 'uppercase',
                         fontSize: '16px',
                         color: '#71767A',
-                        fonFamily: 'Roboto'}}>
+                        }}>
                         {(firstValuteValue && secondValuteValue) ? compare : 'Выберите валюты'}
                 </Box>
             </Box>
-        </Box>
-            
+        </Box>  
         )
     }
 }
