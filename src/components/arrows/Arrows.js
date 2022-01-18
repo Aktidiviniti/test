@@ -3,9 +3,6 @@ import arrowLeft from '../../resourser/icons/ArrowLeft.png';
 import arrowRight from '../../resourser/icons/ArrowRight.png';
 import { Component } from 'react';
 class Arrows extends Component{
-    constructor(props){
-        super(props)
-    }
     state = {
         rotate: false,
     }

@@ -1,5 +1,5 @@
 import { Component} from "react";
-import { Typography, Box, MenuItem, FormControl, Select  } from '@mui/material';
+import { Typography, Box} from '@mui/material';
 import BasicSelect from "../select/select";
 class ExportBlock extends Component{
     constructor(props){
@@ -17,7 +17,7 @@ class ExportBlock extends Component{
     }
     render(){
         const {salary, firstValuteValue, firstValuteName, secondValuteValue, secondValuteName} = this.props,
-            compare = '1' + ' ' + secondValuteName + ' ' + '=' + ' ' + (secondValuteValue / firstValuteValue).toFixed(4) + ' ' + firstValuteName,
+            compare = `1 ${secondValuteName}   =   ${(secondValuteValue / firstValuteValue).toFixed(4)}  ${firstValuteName}`,
             result = ((firstValuteValue / secondValuteValue) * salary).toFixed(2);
         return(
         <Box>

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {Select, FormControl, MenuItem, Box} from '@mui/material';
-import check from '../../resourser/icons/check.png';
 export default function BasicSelect(props) {
 const [age, setAge] = React.useState('');
 const handleChange = (event) => {

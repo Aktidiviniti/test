@@ -1,6 +1,5 @@
 import { Component } from "react";
-import { Typography, Box, InputLabel, MenuItem, FormControl, Select,} from '@mui/material';
-import TextField from '@mui/material/TextField';
+import { Typography, Box} from '@mui/material';
 import BasicSelect from "../select/select";
 import CustomStyles from "../input/Input";
 class ImportBlock extends Component{
@@ -15,7 +14,7 @@ class ImportBlock extends Component{
         secondValuteName: '',
     } 
     changeSalary = (e) => {
-        if(+e.target.value || e.target.value == ''){
+        if(+e.target.value || e.target.value === ''){
            this.setState({salary: e.target.value});
         this.props.changeSalary(e); 
         }
@@ -27,7 +26,7 @@ class ImportBlock extends Component{
     
     render(){
         const {firstValuteValue, firstValuteName, secondValuteValue, secondValuteName} = this.props,
-        compare = '1' + ' ' + firstValuteName + ' ' + '=' + ' ' + (firstValuteValue / secondValuteValue).toFixed(4) + ' ' + secondValuteName;
+        compare = `1  ${firstValuteName} = ${(firstValuteValue / secondValuteValue).toFixed(4)}  ${secondValuteName}`;
         return(
         <Box>
             <Typography variant='h6' 
